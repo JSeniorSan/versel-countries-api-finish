@@ -1,0 +1,139 @@
+@mixin adaptive($_width: 1100px) {
+  @media (min-width: $_width) {
+    @content;
+  }
+}
+
+@mixin secondAdaptive($_minWidth, $_maxWidth) {
+  @media (min-width: $_minWidth) and (max-width: $_maxWidth) {
+    @content;
+  }
+}
+
+@mixin textHeigth($_heigth) {
+  font-size: $_heigth;
+}
+
+@mixin countryInfoDiv2__clicked($_color_bg, $_color_text, $_color_btn) {
+  .countryInfoDiv2__clicked {
+    @include secondAdaptive(600px, 1100px) {
+      @apply flex flex-col;
+    }
+
+    .container__image {
+      @apply h-auto;
+
+      background-color: $_color_bg;
+      @include adaptive() {
+        width: 600px;
+        @apply row-span-3 flex items-center;
+      }
+
+      @include secondAdaptive(450px, 1100px) {
+        @apply w-96;
+      }
+
+      img {
+        @apply h-auto w-full;
+      }
+    }
+
+    .countryInfoDiv2__main {
+      color: $_color_text;
+      @include adaptive() {
+        @apply w-full col-span-2 row-span-2 flex items-center;
+      }
+      .country {
+        @extend %country;
+        @apply text-3xl;
+        color: $_color_text;
+      }
+
+      .text_div {
+        @apply flex flex-row p-2;
+
+        .page {
+          color: $_color_text;
+          @extend %info_str;
+
+          @include adaptive() {
+            @apply justify-center;
+            @include textHeigth(19px);
+          }
+        }
+
+        .text_div__content {
+          @extend %text_info;
+
+          @include adaptive() {
+            @apply justify-center;
+            @include textHeigth(19px);
+          }
+        }
+      }
+    }
+    .countryInfoDiv2__endContent {
+      .text_div {
+        @apply flex flex-row p-2;
+
+        .page {
+          color: $_color_text;
+          @extend %info_str;
+
+          @include adaptive() {
+            @apply justify-center;
+            @include textHeigth(19px);
+          }
+        }
+
+        .text_div__content {
+          @extend %text_info;
+
+          @include adaptive() {
+            @apply justify-center;
+            @include textHeigth(19px);
+          }
+        }
+      }
+
+      @include adaptive() {
+        @apply col-span-3 row-span-2 flex items-center;
+      }
+    }
+    .countriesDiv {
+      @include adaptive() {
+        @apply col-start-2 col-end-7;
+      }
+      h4 {
+        color: $_color_text;
+      }
+
+      .btn_div {
+        @apply flex gap-3 flex-wrap border-none col-span-2;
+        background-color: $_color_bg;
+        margin-bottom: 30px;
+
+        .country__btn {
+          @apply py-2 px-5  font-thin font-serif  border rounded;
+          background-color: $_color_btn;
+          transition: all ease-in-out 0.2s;
+          color: $_color_text;
+
+          &:hover {
+            box-shadow: rgba(0, 0, 0, 0.232) 0 0 10px 1px;
+            transform: translateY(-2px);
+          }
+          @include adaptive() {
+            @include textHeigth(19px);
+          }
+        }
+      }
+    }
+
+    @include adaptive() {
+      @apply grid gap-10;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+  }
+}

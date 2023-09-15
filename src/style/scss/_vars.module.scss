@@ -1,0 +1,12 @@
+body[data-theme="Light"] {
+  --colorMain: rgb(255, 255, 255);
+  --colorText: rgb(0, 0, 0);
+  --colorHeader: rgb(244, 244, 244);
+  --colorGrayInfo: gray;
+}
+body[data-theme="Dark"] {
+  --colorMain: rgb(25, 25, 34);
+  --colorText: rgba(255, 255, 255, 0.916);
+  --colorHeader: rgb(31, 32, 41);
+  --colorGrayInfo: rgba(128, 128, 128, 0.571);
+}
